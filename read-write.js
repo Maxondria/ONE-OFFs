@@ -9,19 +9,26 @@ const readsync = fs.readFileSync('readme.txt', 'utf8');
 fs.writeFileSync('wroteMe.txt', readsync);
 
 /**
- * ASYNC METHODS - Proceed, come back later 
+ * ASYNC METHODS - Proceed, come back later
  * ! This takes a callback as the 3rd param,
  *  *This callback takes in two @params (error, chunk)
  */
 const readAsync = fs.readFile('read-me-async.txt', 'utf8', (error, chunk) => {
-    if(error){
-        console.log(error);
-        return;
-    }
+	if (error) {
+		console.log(error);
+		return;
+	}
 
-    //! must have a callback too
-    fs.writeFile('wroteMeAsync.txt', chunk, (e) => {
-       if(e)  console.log(e);
-    });
+	//! must have a callback too
+	fs.writeFile('wroteMeAsync.txt', chunk, e => {
+		if (e) console.log(e);
+	});
 });
 console.log('Fires before reading the file');
+
+/**
+ * * We can delete files like this
+ */
+fs.unlink('readme.txt', error => {
+	console.log(error);
+}); //as long as it exists...else you will get an error
