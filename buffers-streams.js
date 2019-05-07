@@ -1,8 +1,6 @@
 //buffer - temporary storage for a chunk of data that is being transferred from one place to another
 //stream - after buffer is full, it passes the data down the stream to where its headed
 //increase performance in node
-
-const http = require('http');
 const fs = require('fs');
 
 
